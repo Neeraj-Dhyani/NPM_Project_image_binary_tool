@@ -1,0 +1,21 @@
+{
+  "name": "image-binary-tool",
+  "version": "1.0.0",
+  "description": "Image encode/decode, filters, ASCII generator using raw ImageData",
+  "keywords": [
+    "image",
+    "binary",
+    "ascii",
+    "canvas"
+  ],
+  "license": "MIT",
+  "author": "Neeraj Dhyani",
+  "type": "module",
+  "exports": {
+    ".": "./index.js"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \\\"No tests specified\\\"\""
+  }
+}
