@@ -1,22 +1,28 @@
-# image-data-utils
+# Image Filters Package
 
-Image Filters Package
 A lightweight JavaScript library for applying various image filters and effects to canvas images. This package provides simple functions for image manipulation including blur, grayscale, inversion, vintage effects, ASCII art generation, and more.
 
-Installation
-bash
-npm install [your-package-name]
-Features
-🎨 Multiple image filters (blur, grayscale, inversion, vintage)
-🔤 ASCII art generation with color support
-🖼️ Image data encoding/decoding utilities
-🚀 Easy to use with HTML5 Canvas
-⚡ In-place pixel manipulation for performance
-Usage
-Setup
+## Installation
+
+```bash
+npm install imagedata-filter-toolkit
+```
+
+## Features
+
+- 🎨 Multiple image filters (blur, grayscale, inversion, vintage)
+- 🔤 ASCII art generation with color support
+- 🖼️ Image data encoding/decoding utilities
+- 🚀 Easy to use with HTML5 Canvas
+- ⚡ In-place pixel manipulation for performance
+
+## Usage
+
+### Setup
+
 First, import the functions you need:
 
-javascript
+```javascript
 import { 
   bLur, 
   BW, 
@@ -26,9 +32,12 @@ import {
   ImageDataGenerate,
   encodeImageData,
   decodeImageData
-} from '[your-package-name]';
-Basic Example
-javascript
+} from 'image-filter-toolkit';
+```
+
+### Basic Example
+
+```javascript
 // Setup canvas
 const canvas = document.getElementById('myCanvas');
 const ctx = canvas.getContext('2d');
@@ -51,70 +60,89 @@ fileInput.addEventListener('change', async (e) => {
   // Put modified pixels back to canvas
   ctx.putImageData(imageData, 0, 0);
 });
-API Reference
-bLur(pixels)
+```
+
+## API Reference
+
+### `bLur(pixels)`
+
 Applies a blur effect to the image using a 21x21 box blur kernel.
 
-Parameters:
+**Parameters:**
+- `pixels` (Uint8ClampedArray): The pixel data from canvas ImageData
 
-pixels (Uint8ClampedArray): The pixel data from canvas ImageData
-Example:
-
-javascript
+**Example:**
+```javascript
 const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
 bLur(imageData.data);
 ctx.putImageData(imageData, 0, 0);
-BW(pixels)
+```
+
+---
+
+### `BW(pixels)`
+
 Converts the image to grayscale using average method.
 
-Parameters:
+**Parameters:**
+- `pixels` (Uint8ClampedArray): The pixel data from canvas ImageData
 
-pixels (Uint8ClampedArray): The pixel data from canvas ImageData
-Example:
-
-javascript
+**Example:**
+```javascript
 const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
 BW(imageData.data);
 ctx.putImageData(imageData, 0, 0);
-inversion(pixels)
+```
+
+---
+
+### `inversion(pixels)`
+
 Inverts all colors in the image (negative effect).
 
-Parameters:
+**Parameters:**
+- `pixels` (Uint8ClampedArray): The pixel data from canvas ImageData
 
-pixels (Uint8ClampedArray): The pixel data from canvas ImageData
-Example:
-
-javascript
+**Example:**
+```javascript
 const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
 inversion(imageData.data);
 ctx.putImageData(imageData, 0, 0);
-vintage(pixels)
+```
+
+---
+
+### `vintage(pixels)`
+
 Applies a vintage/sepia tone effect to the image.
 
-Parameters:
+**Parameters:**
+- `pixels` (Uint8ClampedArray): The pixel data from canvas ImageData
 
-pixels (Uint8ClampedArray): The pixel data from canvas ImageData
-Example:
-
-javascript
+**Example:**
+```javascript
 const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
 vintage(imageData.data);
 ctx.putImageData(imageData, 0, 0);
-ASCII_generator(pixels, width, options)
+```
+
+---
+
+### `ASCII_generator(pixels, width, options)`
+
 Converts an image to ASCII art.
 
-Parameters:
+**Parameters:**
+- `pixels` (Uint8ClampedArray): The pixel data from canvas ImageData
+- `width` (number): Width of the image
+- `options` (object): Optional configuration
+  - `char` (array): Custom ASCII characters (default: `[".", ",", ":", "-", "=", "+", "*", "#", "%", "@"]`)
+  - `color` (boolean): Whether to use colored output (default: `true`)
 
-pixels (Uint8ClampedArray): The pixel data from canvas ImageData
-width (number): Width of the image
-options (object): Optional configuration
-char (array): Custom ASCII characters (default: [".", ",", ":", "-", "=", "+", "*", "#", "%", "@"])
-color (boolean): Whether to use colored output (default: true)
-Returns: String containing HTML with ASCII art
+**Returns:** String containing HTML with ASCII art
 
-Example:
-
-javascript
+**Example:**
+```javascript
 const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
 
 // Basic usage with colors
@@ -127,19 +155,23 @@ const customAscii = ASCII_generator(imageData.data, canvas.width, {
   color: false
 });
 document.getElementById('output').innerHTML = `<pre>${customAscii}</pre>`;
-ImageDataGenerate(file, canvas, ctx)
+```
+
+---
+
+### `ImageDataGenerate(file, canvas, ctx)`
+
 Loads an image file and draws it to a canvas.
 
-Parameters:
+**Parameters:**
+- `file` (File): Image file from input element
+- `canvas` (HTMLCanvasElement): Canvas element
+- `ctx` (CanvasRenderingContext2D): Canvas 2D context
 
-file (File): Image file from input element
-canvas (HTMLCanvasElement): Canvas element
-ctx (CanvasRenderingContext2D): Canvas 2D context
-Returns: Promise resolving to {width, height}
+**Returns:** Promise resolving to `{width, height}`
 
-Example:
-
-javascript
+**Example:**
+```javascript
 const fileInput = document.getElementById('fileInput');
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
@@ -149,19 +181,23 @@ fileInput.addEventListener('change', async (e) => {
   const { width, height } = await ImageDataGenerate(file, canvas, ctx);
   console.log(`Image loaded: ${width}x${height}`);
 });
-encodeImageData(imageData, width, height)
+```
+
+---
+
+### `encodeImageData(imageData, width, height)`
+
 Converts ImageData to a 2D array format for easier manipulation.
 
-Parameters:
+**Parameters:**
+- `imageData` (Uint8ClampedArray): Pixel data
+- `width` (number): Image width
+- `height` (number): Image height
 
-imageData (Uint8ClampedArray): Pixel data
-width (number): Image width
-height (number): Image height
-Returns: 2D array where each element is [r, g, b, alpha]
+**Returns:** 2D array where each element is `[r, g, b, alpha]`
 
-Example:
-
-javascript
+**Example:**
+```javascript
 const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
 const binaryMatrix = encodeImageData(
   imageData.data, 
@@ -171,17 +207,33 @@ const binaryMatrix = encodeImageData(
 
 // Now you can easily access pixels
 const pixelColor = binaryMatrix[10][20]; // [r, g, b, alpha] at position (20, 10)
-decodeImageData(binary)
+console.log(`Red: ${pixelColor[0]}, Green: ${pixelColor[1]}, Blue: ${pixelColor[2]}`);
+
+// Manipulate specific pixels
+binaryMatrix[10][20] = [255, 0, 0, 255]; // Set pixel to red
+
+// You can also iterate through pixels easily
+for (let y = 0; y < binaryMatrix.length; y++) {
+  for (let x = 0; x < binaryMatrix[y].length; x++) {
+    const [r, g, b, alpha] = binaryMatrix[y][x];
+    // Do something with each pixel
+  }
+}
+```
+
+---
+
+### `decodeImageData(binary)`
+
 Converts a 2D array format back to ImageData format.
 
-Parameters:
+**Parameters:**
+- `binary` (array): 2D array where each element is `[r, g, b, alpha]`
 
-binary (array): 2D array where each element is [r, g, b, alpha]
-Returns: Object with {data, width, height}
+**Returns:** Object with `{data, width, height}`
 
-Example:
-
-javascript
+**Example:**
+```javascript
 // Create a 2D array (e.g., 100x100 red image)
 const binary = Array(100).fill(0).map(() => 
   Array(100).fill(0).map(() => [255, 0, 0, 255])
@@ -193,8 +245,63 @@ const { data, width, height } = decodeImageData(binary);
 // Create ImageData and draw to canvas
 const imageData = new ImageData(data, width, height);
 ctx.putImageData(imageData, 0, 0);
-Complete Example
-html
+```
+
+**Advanced Example - Encode, Modify, and Decode:**
+```javascript
+// Step 1: Load and encode image
+const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+const binary = encodeImageData(imageData.data, canvas.width, canvas.height);
+
+// Step 2: Manipulate the 2D array
+// Example: Draw a red diagonal line
+for (let i = 0; i < Math.min(binary.length, binary[0].length); i++) {
+  binary[i][i] = [255, 0, 0, 255]; // Red pixel
+}
+
+// Example: Create a blue square in the center
+const centerY = Math.floor(binary.length / 2);
+const centerX = Math.floor(binary[0].length / 2);
+for (let y = centerY - 25; y < centerY + 25; y++) {
+  for (let x = centerX - 25; x < centerX + 25; x++) {
+    if (y >= 0 && y < binary.length && x >= 0 && x < binary[0].length) {
+      binary[y][x] = [0, 0, 255, 255]; // Blue pixel
+    }
+  }
+}
+
+// Step 3: Decode back to ImageData
+const { data, width, height } = decodeImageData(binary);
+const newImageData = new ImageData(data, width, height);
+
+// Step 4: Draw to canvas
+ctx.putImageData(newImageData, 0, 0);
+```
+
+**Practical Use Case - Custom Filter:**
+```javascript
+// Apply a custom filter using encode/decode
+function applyCustomFilter() {
+  const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  const binary = encodeImageData(imageData.data, canvas.width, canvas.height);
+  
+  // Custom filter: Increase red channel by 50
+  for (let y = 0; y < binary.length; y++) {
+    for (let x = 0; x < binary[y].length; x++) {
+      binary[y][x][0] = Math.min(255, binary[y][x][0] + 50);
+    }
+  }
+  
+  // Decode and display
+  const { data, width, height } = decodeImageData(binary);
+  const newImageData = new ImageData(data, width, height);
+  ctx.putImageData(newImageData, 0, 0);
+}
+```
+
+## Complete Example
+
+```html
 <!DOCTYPE html>
 <html>
 <head>
@@ -219,7 +326,7 @@ html
   <script type="module">
     import { 
       bLur, BW, ASCII_generator, inversion, vintage, ImageDataGenerate 
-    } from '[your-package-name]';
+    } from 'image-filter-toolkit';
 
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
@@ -282,26 +389,27 @@ html
   </script>
 </body>
 </html>
-Browser Compatibility
-This package works in all modern browsers that support:
+```
 
-HTML5 Canvas
-ES6 Modules
-Uint8ClampedArray
-License
+## Browser Compatibility
+
+This package works in all modern browsers that support:
+- HTML5 Canvas
+- ES6 Modules
+- Uint8ClampedArray
+
+## License
+
 MIT
 
-Contributing
+## Contributing
+
 Contributions are welcome! Please feel free to submit a Pull Request.
 
-Author
-[Neeraj Dhayni]
+## Author
 
-Repository
-[GitHub Repository URL]
+Neeraj Dhyani
 
+## Repository
 
-
-## Install
-```bash
-npm install image-data-utils
+[https://github.com/Neeraj-Dhyani/NPM_Project_image_binary_tool](https://github.com/Neeraj-Dhyani/NPM_Project_image_binary_tool)
