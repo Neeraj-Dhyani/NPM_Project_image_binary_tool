@@ -5,7 +5,7 @@
  * @param {number} height
  * @param {number} radius
  */
-export function gaussianBlur(pixels, width, height, radius = 5) {
+export function blur(pixels, width, height, radius = 5) {
     const kernel = createGaussianKernel(radius);
     const temp = new Float32Array(pixels.length);
     for (let y = 0; y < height; y++) {

@@ -1,5 +1,5 @@
 export {BW} from "./filter/blackandwhite" 
-export {bLur} from "./filter/blur"
+export {blur} from "./filter/blur"
 export {ASCII_generator} from "./filter/generate_ASCII"
 export {inversion} from "./filter/inversion"
 export {vintage} from "./filter/vintage"
