@@ -5,7 +5,7 @@ A lightweight JavaScript library for applying various image filters and effects 
 ## Installation
 
 ```bash
-npm install imagedata-filter-toolkit
+npm install canvas-image-toolkit
 ```
 
 ## Features
@@ -32,7 +32,7 @@ import {
   ImageDataGenerate,
   encodeImageData,
   decodeImageData
-} from 'image-filter-toolkit';
+} from 'canvas-image-toolkit';
 ```
 
 ### Basic Example

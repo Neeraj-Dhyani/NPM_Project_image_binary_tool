@@ -1,6 +1,9 @@
 /**
  * Convert image pixels to grayscale (in-place)
  * @param {Uint8ClampedArray} pixels
+ * @param {number} width
+ * @param {Object} options
+ * @returns {string}
  */ 
  export function ASCII_generator(pixels, width, option={}){
     const ASCII_CHARS = option.char||["." , ",", ":", "-", "=", "+","*","#","%", "@"]
@@ -10,9 +13,9 @@
     for(let y = 0; y<height; y++){
         for(x =0; x<width; x++){
             let i = (y*width+x)*4
-            const r = imageData[i]
-            const g = imageData[i+1]
-            const b = imageData[i+2]
+            const r = pixels[i]
+            const g = pixels[i+1]
+            const b = pixels[i+2]
 
             const brightness = 0.299 * r + 0.587 * g + 0.114 * b;
 
