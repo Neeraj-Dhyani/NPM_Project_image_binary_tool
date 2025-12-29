@@ -1,6 +1,6 @@
 {
   "name": "canvas-image-toolkit",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Image encode/decode, filters, ASCII generator using raw ImageData",
   "keywords": [
     "image",
